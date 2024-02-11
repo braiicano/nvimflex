@@ -1,0 +1,37 @@
+#!bin/bash
+#
+# Update and Upgrade
+echo $(tput set 6)Force upgrade system
+echo Please allow sudo user passwd to continue...$(tput sgr0)
+sudo apt update -y && sudo apt upgrade
+#
+####
+#
+# if this script is calling without params
+# else  install neovim first
+#
+####
+if ! [[ $1 ]]; then
+	echo $(tput set 5) Installing neovim... $(tput sgr0)
+	sudo apt install -y neovim python3-neovim
+fi
+#
+####
+#
+# Cloning repo and autoconfigure
+#
+git clone https://github.com/braiicano/nvimflex.git "$HOME/.config/nvim/"
+#
+####
+#
+# Executing neovim first time
+#
+nvim -c "Lazy Install" -c "q!"
+#
+####
+#
+# Install dependencies
+#
+
+#
+####

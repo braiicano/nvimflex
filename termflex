@@ -1,0 +1,160 @@
+#!/bin/bash
+#
+# Update and Upgrade
+#
+echo $(tput setaf 6)Force upgrade system
+echo Please allow sudo user passwd to continue...$(tput sgr0)
+sudo apt update -y && sudo apt upgrade
+#
+####
+#
+# Install few programs
+#
+####
+#
+# Verify function
+#
+Verify(){
+	app=$1
+	cmd=$2
+	installer=$3
+	color=$(tput setaf 4)
+	reset=$(tput sgr0)
+    
+	if [[ $cmd == *"--a"* ]]; then
+		cmd=$(echo "$cmd" | sed "s/--a/$app/")
+	fi
+	if [[ $installer == *"--a"* ]]; then
+		installer=$(echo "$installer" | sed "s/--a/$app/")
+	fi
+
+	echo "$color Verify $app in your system...$reset"
+	if [[ -x $cmd ]] || [[ -d $cmd ]]; then
+		[[ -n $installer ]] && eval "$installer" || sudo apt install -y $app &>/dev/null echo "$app is installed successfully."
+	else
+		echo "$color>>$app, is already installed.$reset"
+	fi
+	echo ""
+	}
+####
+#
+# Python3 and pip
+#
+Verify "python3" "command -v --a"
+#
+Verify "pip" "command -v --a"
+#
+####
+#
+# Nodejs and live-server
+#
+Verify "node" "command -v --a" "sudo apt install -y nodejs"
+#
+Verify "live-server" "command -v --a" "npm install -g --a"
+#
+####
+#
+# Git
+#
+Verify "git" "command -v --a"
+#
+####
+#
+# Curl
+#
+Verify "curl" "command -v --a"
+#
+#####
+#
+# ZSH
+#
+Verify "zsh" "command -v --a"
+#
+# Oh My Zsh
+#
+Verify "oh-my-zsh" "\"$HOME/.oh-my-zsh\"" "sh -c \"$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+#
+# Powerlevel10k
+#
+Verify "Powerlevel10k" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k " "git clone --depth https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k"
+#
+# FuraCode NERD Font
+#
+Verify "FuraCode NerdFont" "fc-list | grep -q \"FuraCode Nerd Font\"" "mkdir -p \"$HOME/.local/share/fonts\"; curl -fLo $HOME/.local/share/fonts/FuraCode Nerd Font.ttf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fura%20Code%20Regular%20Nerd%20Font%20Complete.ttf; fc-cache -fv"
+#
+# Zsh Autosuggestions
+#
+Verify "ZSH Autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+#
+# Zsh Autocomplete
+#
+Verify "ZSH Autocomplete" "$HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete" "git clone https://github.com/marlonrichert/zsh-autocomplete $HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete"
+#
+# Zsh Highlighting
+#
+Verify "ZSH Highlighting" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" "git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+#
+####
+#
+# Neovim
+#
+Verify "neovim" "command -v --a"
+#
+####
+#
+# Create .zshrc file
+#
+CreateZSH(){
+	echo $(tput setaf 6) Making .zshrc file default.$(tput sgr0)
+	cat << EOF > "$HOME/.zshrc"
+# Path Powerlevel10k
+if [[ -r "\${XDG_CACHE_HOME:-\$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh" ]]; then
+  source "\${XDG_CACHE_HOME:-\$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh"
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="\$HOME/.oh-my-zsh"
+
+# Set Theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Autocorrection
+ENABLE_CORRECTION="true"
+
+# Timestamp
+HIST_STAMPS="mm/dd/yyyy"
+
+# Plugins
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autocomplete)
+
+source \$ZSH/oh-my-zsh.sh
+
+# Customize prompt
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+EOF
+
+}
+#
+CreateZSH
+#
+# set ZSH as interpreter
+#
+#
+if ! [[ $SHELL == *"zsh" ]]
+then
+	echo $(tput setaf 6) Now change your Shell with ZSH $(tput sgr0)
+	exec chsh -s zsh
+fi
+#
+####
+#
+# Open nvim.flex
+read -p "Do you want to install Nvimflex? \"y\" to continue..." _query
+if [[ _query == "y" ]]; then
+	echo "Installing Nvimflex..."
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/braiicano/neovimflex/main/nvimflex)"
+else
+	nvimflex= sh -c "$(curl -fsSL https://raw.githubusercontent.com/braiicano/neovimflex/main/nvimflex)"
+	echo "For install Nvimflex run nvimflex"
+fi
+

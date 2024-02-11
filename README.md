@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# nvimflex
-Fast custom terminal and neovim like ide
-=======
 <div style="padding: 1.5rem">
 <style>
 *{
@@ -276,4 +272,3 @@ In references links are all sources to install manually the programs
 </div>
 </div>
 
->>>>>>> 1276f89 (create init)
