@@ -1,5 +1,5 @@
-<div style="padding: 1.5rem; scroll-behavior: smooth">
-
+<div>
+    
 # Faster Customizer
 
 This repo help you to customize your terminal and hyperextensible text editor for your terminal
@@ -12,8 +12,6 @@ Step by step, to install it [manually](#manually) or [automatically](#automatic)
 
 ### [What](#what) will install we?
 
-<div style="display:grid; place-items: center">
-
 |*Terminal*| *Applications* | *IDE* |
 |:--:|:--:|:--:|
 |ZSH|Curl| Neovim|
@@ -25,8 +23,6 @@ Step by step, to install it [manually](#manually) or [automatically](#automatic)
 |Autosuggestions||LSPs|
 |Highlighting||nvim-cmp|
 
-</div>
-
 ---
 
 <div id="automatic">
@@ -35,8 +31,8 @@ Step by step, to install it [manually](#manually) or [automatically](#automatic)
 
 </div>
 
-> ![TIP]
-> **Verify cURL have installed in your system**
+> [!TIP]
+> Verify cURL have installed in your system
 
 To install cURL:
 
@@ -208,8 +204,6 @@ In references links are all sources to install manually the programs
 
 ### For more plugins or tools visit github repositories
 
-<div style="text-align: center">
-
 [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
@@ -222,15 +216,11 @@ In references links are all sources to install manually the programs
 
 [More plugins](https://dotfyle.com/neovim/plugins/trending0)
 
-</div>
-
 ---
 <div id="what">
 
 ### References links
-
-<div style="display: grid; place-items: center">
-
+    
 |Name|Link|Description|
 |:-:|:-:|:-|
 |Zsh|[Source](https://zsh.sourceforge.io/Arc/git.html)|Is an interactive and it is also a powerful scripting language
@@ -256,7 +246,5 @@ In references links are all sources to install manually the programs
 |nvim-cmp|[Github](https://github.com/hrsh7th/nvim-cmp)|A completion engine plugin for neovim
 
 
-</div>
-</div>
 </div>
 
