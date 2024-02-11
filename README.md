@@ -35,8 +35,8 @@ Step by step, to install it [manually](#manually) or [automatically](#automatic)
 
 </div>
 
->![TIP]
-> Verify cURL have installed in your system**
+> ![TIP]
+> **Verify cURL have installed in your system**
 
 To install cURL:
 
