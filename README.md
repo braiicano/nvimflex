@@ -1,16 +1,4 @@
-<div style="padding: 1.5rem">
-<style>
-*{
-    scroll-behavior: smooth;
-}
-div.mk-center{
-    display: grid;
-    place-items: center;
-}
-div.text-center{
-    text-align: center;
-}
-</style>
+<div style="padding: 1.5rem; scroll-behavior: smooth">
 
 # Faster Customizer
 
@@ -24,7 +12,7 @@ Step by step, to install it [manually](#manually) or [automatically](#automatic)
 
 ### [What](#what) will install we?
 
-<div class="mk-center">
+<div style="display:grid; place-items: center">
 
 |*Terminal*| *Applications* | *IDE* |
 |:--:|:--:|:--:|
@@ -220,7 +208,7 @@ In references links are all sources to install manually the programs
 
 ### For more plugins or tools visit github repositories
 
-<div class="text-center">
+<div style="text-align: center">
 
 [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
@@ -241,7 +229,7 @@ In references links are all sources to install manually the programs
 
 ### References links
 
-<div class="mk-center">
+<div style="display: grid; place-items: center">
 
 |Name|Link|Description|
 |:-:|:-:|:-|
